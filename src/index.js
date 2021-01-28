@@ -10,7 +10,7 @@ import {
 	isString
 } from './helpers';
 
-(function Notifications(window) {
+(window => {
 	// Default notification options
 	const defaultOptions = {
 		closeOnClick: true,
@@ -21,12 +21,12 @@ import {
 		theme: 'success'
 	};
 
-	function configureOptions(options) {
+	const configureOptions = options => {
 		// Create a copy of options and merge with defaults
 		options = Object.assign({}, defaultOptions, options);
 
 		// Validate position class
-		function validatePositionClass(className) {
+		const validatePositionClass = className => {
 			const validPositions = [
 				'nfc-top-left',
 				'nfc-top-center',
@@ -68,13 +68,24 @@ import {
 		return options;
 	}
 
+	const createNotificationContainer = position => {
+		let container = document.querySelector(`.${position}`);
+
+		if(!container) {
+			container = createElement('div', 'ncf-container', position);
+			append(document.body, container);
+		}
+
+		return container;
+	}
+
 	// Create a new notification instance
-	function createNotification(options) {
+	const createNotification = options => {
 		// Validate options and set defaults
 		options = configureOptions(options);
 
 		// Return a notification function
-		return function notification({ title, message } = {}) {
+		return ({title, message} = {}) => {
 			const container = createNotificationContainer(options.positionClass);
 
 			if(!title && !message) {
@@ -131,17 +142,6 @@ import {
 				}
 			}
 		};
-	}
-
-	function createNotificationContainer(position) {
-		let container = document.querySelector(`.${position}`);
-
-		if(!container) {
-			container = createElement('div', 'ncf-container', position);
-			append(document.body, container);
-		}
-
-		return container;
 	}
 
 	// Add Notifications to window to make globally accessible

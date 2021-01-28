@@ -1,10 +1,10 @@
 'use strict';
 
 // Written using ES5 JS for browser support
-window.addEventListener('DOMContentLoaded', function () {
-	var form = document.querySelector('form');
+window.addEventListener('DOMContentLoaded', () => {
+	const form = document.querySelector('form');
 
-	form.addEventListener('submit', function (e) {
+	form.addEventListener('submit', e => {
 		e.preventDefault();
 
 		// Form elements
