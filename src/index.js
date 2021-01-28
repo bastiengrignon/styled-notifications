@@ -40,7 +40,7 @@ import {
 			];
 
 			return validPositions.indexOf(className) > -1;
-		}
+		};
 
 		// Verify position, if invalid reset to default
 		if (!validatePositionClass(options.positionClass)) {
@@ -66,7 +66,7 @@ import {
 		}
 
 		return options;
-	}
+	};
 
 	const createNotificationContainer = position => {
 		let container = document.querySelector(`.${position}`);
@@ -77,7 +77,7 @@ import {
 		}
 
 		return container;
-	}
+	};
 
 	// Create a new notification instance
 	const createNotification = options => {
@@ -142,7 +142,7 @@ import {
 				}
 			}
 		};
-	}
+	};
 
 	// Add Notifications to window to make globally accessible
 	if (window.createNotification) {
